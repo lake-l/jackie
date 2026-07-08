@@ -1,7 +1,7 @@
 name: YouTube Gemini ChatGPT Availability
 desc: "Detects YouTube, Gemini, and ChatGPT availability from the current Stash route. Open the test URLs after enabling this override."
 author: Codex
-homepage: https://example.com
+homepage: https://github.com/lake-l/jackie
 category: Tools
 
 http:
@@ -35,11 +35,11 @@ http:
 
 script-providers:
   Service.Availability.YouTube:
-    url: https://example.com/stash/service-availability-check.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/blob/main/service-availability-check.js
     interval: 86400
   Service.Availability.Gemini:
-    url: https://example.com/stash/service-availability-check.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/blob/main/service-availability-check.js
     interval: 86400
   Service.Availability.ChatGPT:
-    url: https://example.com/stash/service-availability-check.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/blob/main/service-availability-check.js
     interval: 86400
