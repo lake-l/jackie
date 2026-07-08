@@ -4,7 +4,7 @@ desc: 检测当前节点的 YouTube 可用性及解锁地区
 
 script-providers:
   yt-check:
-    url: https://github.com/lake-l/jackie/blob/34020eaf0a089f489532444d82219b4c19f47a3f/jiance.js
+    url: https://github.com/lake-l/jackie/34020eaf0a089f489532444d82219b4c19f47a3f/jiance.js
     interval: 3600
 
 panel:
