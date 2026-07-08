@@ -25,9 +25,9 @@ tiles:
 
 script-providers:
   YouTube-Check:
-    url: https://fastly.jsdelivr.net/gh/<github-user>/<repo>@main/scripts/youtube.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/main/scripts/youtube.js
   Gemini-Check:
-    url: https://fastly.jsdelivr.net/gh/<github-user>/<repo>@main/scripts/gemini.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/main/scripts/gemini.js
   ChatGPT-Check:
-    url: https://fastly.jsdelivr.net/gh/<github-user>/<repo>@main/scripts/chatgpt.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/main/scripts/chatgpt.js
 
