@@ -35,11 +35,11 @@ http:
 
 script-providers:
   Service.Availability.YouTube:
-    url: https://raw.githubusercontent.com/lake-l/jackie/blob/main/service-availability-check.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/main/service-availability-check.js
     interval: 86400
   Service.Availability.Gemini:
-    url: https://raw.githubusercontent.com/lake-l/jackie/blob/main/service-availability-check.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/main/service-availability-check.js
     interval: 86400
   Service.Availability.ChatGPT:
-    url: https://raw.githubusercontent.com/lake-l/jackie/blob/main/service-availability-check.js
+    url: https://raw.githubusercontent.com/lake-l/jackie/main/service-availability-check.js
     interval: 86400
