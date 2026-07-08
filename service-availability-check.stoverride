@@ -1,8 +1,45 @@
-#!name=Check Availability
-#!desc=Checks whether YouTube, Gemini, and ChatGPT are reachable from the current Stash proxy path.
-#!author=Codex
-#!homepage=*
+name: YouTube Gemini ChatGPT Availability
+desc: "Detects YouTube, Gemini, and ChatGPT availability from the current Stash route. Open the test URLs after enabling this override."
+author: Codex
+homepage: https://example.com
+category: Tools
 
-[Script]
-Service Availability Check = type=cron, cronexp="0 */6 * * *", timeout=45, wake-system=1, script-path=https://github.com/lake-l/jackie/blob/main/service-availability-check.js
+http:
+  mitm:
+    - "www.youtube.com"
+    - "gemini.google.com"
+    - "chatgpt.com"
+  script:
+    - match: ^https?:\/\/www\.youtube\.com\/generate_204
+      name: Service.Availability.YouTube
+      type: response
+      require-body: false
+      timeout: 15
+      argument: service=YouTube&ok=204&reachable=200,204,301,302,303,307,308
 
+    - match: ^https?:\/\/gemini\.google\.com\/app
+      name: Service.Availability.Gemini
+      type: response
+      require-body: true
+      max-size: 0
+      timeout: 15
+      argument: service=Gemini&ok=200,301,302,303,307,308&reachable=200,301,302,303,307,308,401,403
+
+    - match: ^https?:\/\/chatgpt\.com\/backend-api\/accounts\/check\/v4-2023-04-27
+      name: Service.Availability.ChatGPT
+      type: response
+      require-body: true
+      max-size: 0
+      timeout: 15
+      argument: service=ChatGPT&ok=200,401,403&reachable=200,401,403,429
+
+script-providers:
+  Service.Availability.YouTube:
+    url: https://example.com/stash/service-availability-check.js
+    interval: 86400
+  Service.Availability.Gemini:
+    url: https://example.com/stash/service-availability-check.js
+    interval: 86400
+  Service.Availability.ChatGPT:
+    url: https://example.com/stash/service-availability-check.js
+    interval: 86400
