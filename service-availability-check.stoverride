@@ -1,0 +1,8 @@
+#!name=Check Availability
+#!desc=Checks whether YouTube, Gemini, and ChatGPT are reachable from the current Stash proxy path.
+#!author=Codex
+#!homepage=https://example.com
+
+[Script]
+Service Availability Check = type=cron, cronexp="0 */6 * * *", timeout=45, wake-system=1, script-path=https://example.com/stash/service-availability-check.js
+
