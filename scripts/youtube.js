@@ -1,5 +1,5 @@
 async function request(method, params) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const httpMethod = $httpClient[method.toLowerCase()];
     httpMethod(params, (error, response, data) => {
       resolve({ error, response, data });
@@ -7,41 +7,50 @@ async function request(method, params) {
   });
 }
 
-function done(content, backgroundColor) {
-  $done({ content, backgroundColor: backgroundColor || "" });
-}
-
 async function main() {
-  const { error, response } = await request("GET", {
-    url: "https://www.youtube.com/generate_204",
-    timeout: 8000,
-    headers: {
-      "User-Agent": "Mozilla/5.0",
-    },
-  });
+  const { error, response, data } = await request(
+    "GET",
+    "https://www.youtube.com/premium"
+  );
 
   if (error) {
-    done("Network Error");
+    $done({
+      content: "Network Error",
+      backgroundColor: "",
+    });
     return;
   }
 
-  const status = Number(response && (response.status || response.statusCode));
-  if (status === 204) {
-    done("Available", "#88A788");
+  if (
+    data
+      .toLowerCase()
+      .includes("youtube premium is not available in your country")
+  ) {
+    $done({
+      content: "Not Available",
+      backgroundColor: "",
+    });
     return;
   }
 
-  if ([200, 301, 302, 303, 307, 308].includes(status)) {
-    done(`Reachable (${status})`, "#88A788");
+  if (data.toLowerCase().includes("ad-free")) {
+    $done({
+      content: `Available`,
+      backgroundColor: "#FF0000",
+    });
     return;
   }
 
-  done(`Status ${status || "Unknown"}`);
+  $done({
+    content: "Unknown Error",
+    backgroundColor: "",
+  });
 }
 
 (async () => {
-  main().catch(() => {
-    $done({});
-  });
+  main()
+    .then((_) => {})
+    .catch((error) => {
+      $done({});
+    });
 })();
-
